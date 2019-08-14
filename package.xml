@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package>
+    <name>Fianet_Sac</name>
+    <version>0.5.8</version>
+    <stability>stable</stability>
+    <license uri="http://www.opensource.org/licenses/osl-3.0.php">OSL v3.0</license>
+    <channel>community</channel>
+    <extends/>
+    <summary>FIA-NET Syst&#xE8;me d'Analyse des Commandes</summary>
+    <description>FIA-NET Syst&#xE8;me d'Analyse des Commandes</description>
+    <notes>Compatible magento 1.4</notes>
+    <authors><author><name>Fabrice Beck</name><user>auto-converted</user><email>kalliser@gmail.com</email></author><author><name>Romuald CAUFFET</name><user>auto-converted</user><email>romuald.cauffet@fia-net.fr</email></author></authors>
+    <date>2010-04-09</date>
+    <time>13:30:31</time>
+    <contents><target name="magedesign"><dir name="adminhtml"><dir name="default"><dir name="default"><dir name="layout"><file name="sac.xml" hash="7077c470bc6b9ea1e78ade1db4df62b1"/></dir></dir></dir></dir></target><target name="magecommunity"><dir name="Fianet"><dir name="Sac"><dir name="Block"><dir name="Payment"><dir name="Edit"><file name="Form.php" hash="c64c099cd5335f06342e7dc9d7cb37b2"/></dir><file name="Configuration.php" hash="b68a94d906d276b84332db6df9b3d30a"/></dir></dir><dir name="controllers"><file name="OrderController.php" hash="0b4d53d272a8d243ee96eb19270137cd"/><file name="PaymentController.php" hash="097868ee72a1e3613e45911e98f0f70e"/></dir><dir name="etc"><file name="config.xml" hash="1a75c136f4ca73d19398afdece953b74"/></dir><dir name="Helper"><file name="Data.php" hash="90567ad29b5a627e8aa019d47c90f0f3"/></dir><dir name="Model"><dir name="Mysql4"><dir name="Payment"><dir name="Association"><file name="Collection.php" hash="6414dca05a614c3740bcfc2ffe6aab0e"/></dir><file name="Association.php" hash="3054892def6781498201d2bb8e90bb2d"/></dir></dir><dir name="Payment"><file name="Association.php" hash="c704a7b25c13bd70e1d713dd34851413"/></dir><dir name="Source"><dir name="Payment"><file name="Type.php" hash="d4971c33314ccc3497e278b4714ca33b"/></dir></dir><file name="Action.php" hash="64f85b6415b4e59b1e580fb9bc2f3c31"/></dir><dir name="sql"><dir name="sac_setup"><file name="mysql4-install-0.5.0.php" hash="1074cf9a18671a0c1f2749c9e439674f"/><file name="mysql4-upgrade-0.5.0-0.5.2.php" hash="4f41f304a166f892466f93b81a1f5873"/></dir></dir></dir></dir></target><target name="mageetc"><dir name="modules"><file name="Zfianet_Sac.xml" hash="e86e5bd6148d489667faa88c2b64aec2"/></dir></target></contents>
+    <compatible/>
+    <dependencies><required><package><name>Fianet_Core</name><channel>community</channel><min>0.5.7</min><max></max></package></required></dependencies>
+</package>

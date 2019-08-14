@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<layout>
+    <sac_payment_index>
+        <reference name="content">
+            <block type="sac/payment_configuration" name="sac.payment.configuration" />
+        </reference>
+    </sac_payment_index>
+    
+    <fianet_configuration_index>
+        <reference name="fianet_configuration_tabs">
+            <action method="addConfigurationTab">
+                <name>SacTab</name>
+                <label>SAC</label>
+                <title>Systeme d'Analyse des Commandes</title>
+                <type>S</type>
+            </action>
+        </reference>
+    </fianet_configuration_index>
+    <adminhtml_sales_order_index>
+        <reference name="sales_order.grid">
+            <action method="addMassAction">
+                <code>code</code>
+                <label>label</label>
+                <url>url</url>
+            </action>
+        </reference>
+    </adminhtml_sales_order_index>
+</layout>

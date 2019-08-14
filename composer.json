@@ -1,0 +1,16 @@
+{
+    "name": "OpenMageModuleFostering/Fianet_Sac",
+    "type": "magento-module",
+    "license": "OSL-v3.0",
+    "homepage": "",
+    "description": "FIA-NET Système d'Analyse des Commandes",
+    "authors": [
+    {
+        "name": "Fabrice Beck",
+        "email": "kalliser@gmail.com"
+    }
+],
+    "suggest": {
+        "magento-hackathon/magento-composer-installer": "*"
+    }
+}

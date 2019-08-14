@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<config>
+    <modules>
+        <Fianet_Sac>
+            <active>true</active>
+            <codePool>community</codePool>
+            <depends>
+                <Fianet_Core />
+            </depends>
+            <version>0.5.7</version>
+        </Fianet_Sac>
+    </modules>
+</config>
