@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<!--
+<?php
+
 /**
  * 2000-2012 FIA-NET
  *
@@ -15,11 +15,21 @@
  *  @version Release: $Revision: 1.0.1 $
  *  @license http://www.opensource.org/licenses/OSL-3.0  Open Software License (OSL 3.0)
  */
--->
-<layout>
-    <sac_adminhtml_payment_index>
-        <reference name="content">
-            <block type="sac/adminhtml_payment_configuration" name="sac.payment.configuration" />
-        </reference>
-    </sac_adminhtml_payment_index>
-</layout>
+class Fianet_Sac_Block_Adminhtml_Payment_Configuration extends Mage_Adminhtml_Block_Widget_Form_Container {
+
+    public function __construct() {
+        parent::__construct();
+        $this->_objectId = 'id';
+
+        $this->_blockGroup = 'sac';
+        $this->_controller = 'adminhtml_payment';
+        $this->_mode = 'edit';
+
+        $this->_updateButton('save', 'label', $this->__('Save'));
+    }
+
+    public function getHeaderText() {
+        return Mage::helper('fianet')->__('Payment configuration');
+    }
+
+}

@@ -1,8 +1,25 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * 2000-2012 FIA-NET
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0) that is available
+ * through the world-wide-web at this URL: http://www.opensource.org/licenses/OSL-3.0
+ * If you are unable to obtain it through the world-wide-web, please contact us
+ * via http://www.fia-net-group.com/formulaire.php so we can send you a copy immediately.
+ *
+ *  @author FIA-NET <support-boutique@fia-net.com>
+ *  @copyright 2000-2012 FIA-NET
+ *  @version Release: $Revision: 1.0.1 $
+ *  @license http://www.opensource.org/licenses/OSL-3.0  Open Software License (OSL 3.0)
+ */
+-->
 <config>
     <modules>
         <Fianet_Sac>
-            <version>0.5.8</version>
+            <version>1.0.1</version>
         </Fianet_Sac>
     </modules>
     <admin>
@@ -16,17 +33,35 @@
             </sac>
         </routers>
     </admin>
+    <adminhtml>
+        <translate>
+            <modules>
+                <Fianet_Sac>
+                    <files>
+                        <default>Fianet_Sac.csv</default>
+                    </files>
+                </Fianet_Sac>
+            </modules>
+        </translate>
+        <layout>
+            <updates>
+                <sac>
+                    <file>sac.xml</file>
+                </sac>
+            </updates>
+        </layout>
+    </adminhtml>
     <global>
         <events>
-            <checkout_onepage_controller_success_action>
+            <sales_order_save_after>
                 <observers>
-                    <Sac_Auto_Send_Order>
+                    <sac_auto_send_order>
                         <type>singleton</type>
-                        <class>sac/action</class>
-                        <method>auto_send_order</method>
-                    </Sac_Auto_Send_Order>
+                        <class>sac/observer</class>
+                        <method>autoSendOrder</method>
+                    </sac_auto_send_order>
                 </observers>
-            </checkout_onepage_controller_success_action>
+            </sales_order_save_after>
         </events>
         <models>
             <sac>
@@ -47,6 +82,11 @@
                 <class>Fianet_Sac_Helper</class>
             </sac>
         </helpers>
+        <blocks>
+            <sac>
+                <class>Fianet_Sac_Block</class>
+            </sac>
+        </blocks>
         <resources>
             <sac_setup>
                 <setup>
@@ -68,60 +108,49 @@
                 </connection>
             </sac_read>
         </resources>
-        <blocks>
-            <sac>
-                <class>Fianet_Sac_Block</class>
-            </sac>
-        </blocks>
     </global>
-    <adminhtml>
-        <translate>
-            <modules>
-                <Fianet_Sac>
-                    <files>
-                        <default>Fianet_Core.csv</default>
-                    </files>
-                </Fianet_Sac>
-            </modules>
-        </translate>
-        <menu>
-            <fianet>
-                <children>
-                    <sacconfig module="sac" translate="title">
-                        <title>S.A.C.</title>
-                        <sort_order>2</sort_order>
-                        <children>
-                            <sacpaymentconfig translate="title" module="sac">
-                                <title>Payment method configuration</title>
-                                <sort_order>1</sort_order>
-                                <action>sac/payment</action>
-                            </sacpaymentconfig>
-                        </children>
-                    </sacconfig>
-                </children>
-            </fianet>
-        </menu>
-        <acl>
-            <resources>
-                <all>
-                    <title>Allow Everything</title>
-                </all>
-                <admin>
-                    <children>
-                        <sac>
-                            <title>S.A.C.</title>
-                            <sort_order>202</sort_order>
-                        </sac>
-                    </children>
-                </admin>
-            </resources>
-        </acl>
-        <layout>
-            <updates>
-                <sac>
-                    <file>sac.xml</file>
-                </sac>
-            </updates>
-        </layout>
-    </adminhtml>
+    <default>
+        <sac>
+			<sacconfg>
+				<timecontrol><![CDATA[22]]></timecontrol>
+			</sacconfg>
+            <saclink>
+                <produrl><![CDATA[https://secure.fia-net.com/fscreener/]]></produrl>
+                <testurl><![CDATA[https://secure.fia-net.com/pprod/]]></testurl>
+                <stacking><![CDATA[engine/stacking.cgi]]></stacking>
+                <validstack><![CDATA[engine/get_validstack.cgi]]></validstack>
+                <alert><![CDATA[engine/get_alert.cgi]]></alert>
+                <interface><![CDATA[commun/visucheck_detail.php]]></interface>
+                <checkxml><![CDATA[marchand/checkxml.php]]></checkxml>
+            </saclink>
+        </sac>
+    </default>
+    <crontab>
+        <jobs>
+            <fianetsac_get_evaluation>
+                <schedule>
+                    <cron_expr>*/15 * * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>sac/action::getEvaluation</model>
+                </run>
+            </fianetsac_get_evaluation>
+            <fianetsac_get_reevaluation>
+                <schedule>
+                    <cron_expr>10 0,12 * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>sac/action::getReevaluation</model>
+                </run>
+            </fianetsac_get_reevaluation>
+            <fianetsac_send_missing_orders>
+                <schedule>
+                    <cron_expr>0 */3 * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>sac/action::sendMissingOrders</model>
+                </run>
+            </fianetsac_send_missing_orders>
+        </jobs>
+    </crontab>
 </config>

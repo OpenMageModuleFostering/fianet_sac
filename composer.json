@@ -1,13 +1,13 @@
 {
     "name": "OpenMageModuleFostering/Fianet_Sac",
     "type": "magento-module",
-    "license": "OSL-v3.0",
+    "license": "Open-Software-License-(OSL-3.0)",
     "homepage": "",
-    "description": "FIA-NET Système d'Analyse des Commandes",
+    "description": "FIA-NET Certissim",
     "authors": [
     {
-        "name": "Fabrice Beck",
-        "email": "kalliser@gmail.com"
+        "name": "FIA-NET",
+        "email": "support-boutique@fia-net.com"
     }
 ],
     "suggest": {

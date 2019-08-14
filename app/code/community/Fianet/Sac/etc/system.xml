@@ -1,0 +1,203 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * 2000-2012 FIA-NET
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0) that is available
+ * through the world-wide-web at this URL: http://www.opensource.org/licenses/OSL-3.0
+ * If you are unable to obtain it through the world-wide-web, please contact us
+ * via http://www.fia-net-group.com/formulaire.php so we can send you a copy immediately.
+ *
+ *  @author FIA-NET <support-boutique@fia-net.com>
+ *  @copyright 2000-2012 FIA-NET
+ *  @version Release: $Revision: 1.0.1 $
+ *  @license http://www.opensource.org/licenses/OSL-3.0  Open Software License (OSL 3.0)
+ */
+-->
+<config>
+    <sections>
+        <sac translate="label">
+            <label>Certissim</label>
+            <tab>sales</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>1000</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <!-- New groups go here -->
+                <sacconfg translate="label">
+                    <label>General configuration</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <!-- New fields go here -->
+                        <active translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </active>
+                        <mode translate="label">
+                            <label>Test or production mode</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>fianet/source_mode</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </mode>
+                        <siteid translate="label, comment">
+                            <label>Site ID</label>
+							<comment><![CDATA[The site ID is provided in your Certissim account]]></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </siteid>
+                        <compte translate="label, comment">
+                            <label>Login</label>
+							<comment><![CDATA[The Login is provided in your Certissim account]]></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </compte>
+                        <password translate="label">
+                            <label>Password</label>
+							<comment><![CDATA[The Password is provided in your Certissim account]]></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </password>
+						<encryptmode translate="label">
+                            <label>Encryption mode</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>fianet/source_crypt</source_model>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </encryptmode>
+                        <charset translate="label">
+                            <label>Charset</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>fianet/source_charset</source_model>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </charset>
+                        <defaultproducttype translate="label">
+                            <label>Default product type</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>fianet/source_productType</source_model>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </defaultproducttype>
+						<timecontrol translate="label, comment">
+							<label>Maximum delay to sending commands (in day)</label>
+							<comment><![CDATA[Orders placed before this time will not be sent to CERTISSIM]]></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+						</timecontrol>
+                         <procasso translate="label, comment">
+                            <label>List of Magento's Statuses</label>
+							<comment><![CDATA[Select the status for which the transaction will be sent to CERTISSIM system (multiple selections possible)]]></comment>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>sac/source_statut</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </procasso>
+                    </fields>
+                </sacconfg>
+                <saclink translate="label">
+                    <label>Links</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>2</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <!-- New fields go here -->
+                        <produrl translate="label">
+                            <label>Production URL</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </produrl>
+                        <testurl translate="label">
+                            <label>Test URL</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </testurl>
+                        <stacking translate="label">
+                            <label>Sending script's orders</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </stacking>
+                        <validstack translate="label">
+                            <label>Recovery script's evaluations</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </validstack>
+                        <alert translate="label">
+                            <label>Recovery script's reevaluations</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </alert>
+                        <interface translate="label">
+                            <label>CERTISSIM Interface</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </interface>
+                        <checkxml translate="label">
+                            <label>Check XML</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </checkxml>
+                    </fields>
+                </saclink>
+            </groups>
+        </sac>
+    </sections>
+</config>

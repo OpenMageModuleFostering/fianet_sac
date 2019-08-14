@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<!--
+<?php
+
 /**
  * 2000-2012 FIA-NET
  *
@@ -15,11 +15,23 @@
  *  @version Release: $Revision: 1.0.1 $
  *  @license http://www.opensource.org/licenses/OSL-3.0  Open Software License (OSL 3.0)
  */
--->
-<layout>
-    <sac_adminhtml_payment_index>
-        <reference name="content">
-            <block type="sac/adminhtml_payment_configuration" name="sac.payment.configuration" />
-        </reference>
-    </sac_adminhtml_payment_index>
-</layout>
+?>
+<?php
+
+$installer = $this;
+$installer->startSetup();
+
+$shipping_list = Mage::getModel('fianet/mageConfiguration')->getShippingMethods();
+foreach ($shipping_list as $Code => $label) {
+
+    if (!Mage::getModel('fianet/shipping_association')->load($Code)->hasData()) {
+        Mage::getModel('fianet/shipping_association')
+                ->load($Code)
+                ->setShipping_code($Code)
+                ->setFianet_shipping_type('4')
+                ->setDelivery_times('2')
+                ->setConveyor_name('A definir')
+                ->save();
+    }
+}
+$installer->endSetup();

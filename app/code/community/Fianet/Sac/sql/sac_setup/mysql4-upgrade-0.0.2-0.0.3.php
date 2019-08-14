@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<!--
+<?php
+
 /**
  * 2000-2012 FIA-NET
  *
@@ -15,11 +15,18 @@
  *  @version Release: $Revision: 1.0.1 $
  *  @license http://www.opensource.org/licenses/OSL-3.0  Open Software License (OSL 3.0)
  */
--->
-<layout>
-    <sac_adminhtml_payment_index>
-        <reference name="content">
-            <block type="sac/adminhtml_payment_configuration" name="sac.payment.configuration" />
-        </reference>
-    </sac_adminhtml_payment_index>
-</layout>
+?>
+<?php
+
+$installer = $this;
+$installer->startSetup();
+$installer->run("
+    CREATE TABLE IF NOT EXISTS `{$this->getTable('fianet_sac_log')}` (
+    `id` int(11) NOT NULL auto_increment,
+    `date` timestamp NOT NULL default CURRENT_TIMESTAMP,
+    `message` text NOT NULL,
+    PRIMARY KEY  (`id`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+");
+
+$installer->endSetup();

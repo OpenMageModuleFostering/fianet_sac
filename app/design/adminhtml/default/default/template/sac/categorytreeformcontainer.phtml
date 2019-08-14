@@ -1,0 +1,39 @@
+<?php
+/**
+ * 2000-2012 FIA-NET
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0) that is available
+ * through the world-wide-web at this URL: http://www.opensource.org/licenses/OSL-3.0
+ * If you are unable to obtain it through the world-wide-web, please contact us
+ * via http://www.fia-net-group.com/formulaire.php so we can send you a copy immediately.
+ *
+ *  @author FIA-NET <support-boutique@fia-net.com>
+ *  @copyright 2000-2012 FIA-NET
+ *  @version Release: $Revision: 1.0.1 $
+ *  @license http://www.opensource.org/licenses/OSL-3.0  Open Software License (OSL 3.0)
+ */
+?>
+<div id="category-edit-container" class="category-content">
+    <?php echo $this->getFormInitScripts() ?>
+    <div class="content-header">
+        <?php echo $this->getHeaderHtml() ?>
+        <p class="content-buttons form-buttons"><?php echo $this->getButtonsHtml('header') ?></p>
+    </div>
+
+    <form action="<?php echo $this->getFormActionUrl() ?>" method="post" id="edit_form">
+        <?php echo $this->getChildHtml('form') ?>
+    </form>
+
+    <?php if ($this->hasFooterButtons()): ?>
+        <div class="content-footer">
+            <p class="content-buttons form-buttons"><?php echo $this->getButtonsHtml('footer') ?></p>
+        </div>
+    <?php endif; ?>
+    <script type="text/javascript">
+        var editForm = new varienForm('edit_form', '<?php echo $this->getValidationUrl() ?>');
+    </script>
+    <?php echo $this->getFormScripts() ?>
+    <?php echo $this->getChildHtml('googleoptimizer_js') ?>
+</div>

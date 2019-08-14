@@ -1,0 +1,97 @@
+<?php
+/**
+ * 2000-2012 FIA-NET
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0) that is available
+ * through the world-wide-web at this URL: http://www.opensource.org/licenses/OSL-3.0
+ * If you are unable to obtain it through the world-wide-web, please contact us
+ * via http://www.fia-net-group.com/formulaire.php so we can send you a copy immediately.
+ *
+ *  @author FIA-NET <support-boutique@fia-net.com>
+ *  @copyright 2000-2012 FIA-NET
+ *  @version Release: $Revision: 1.0.1 $
+ *  @license http://www.opensource.org/licenses/OSL-3.0  Open Software License (OSL 3.0)
+ */
+?>
+<?php $_websiteCollection = $this->getWebsiteCollection() ?>
+<?php if ($_websiteCollection->getSize()): ?>
+    <div style="margin-right:10px;">
+        <p class="switcher">
+            <label for="store_switcher">
+            <?php
+                $scope = 'group_id';
+
+                if ($scope == 'group_id') {
+                    echo $this->Helper('sac')->__('Choose Store');
+                } elseif ($scope == 'website_id') {
+                    echo $this->Helper('sac')->__('Choose Website');
+                } elseif ($scope == 'store_id') {
+                    echo $this->Helper('sac')->__('Choose Store view');
+                }
+            ?>:
+            </label>
+            <select name="store_switcher" id="store_switcher" class="left-col-block" onchange="return switchStore(this);">
+                <option value=""><?php echo $this->getDefaultStoreName() ?></option>
+                <?php if ($scope == 'group_id') {
+                    foreach ($_websiteCollection as $_website) {
+                        echo '<optgroup label="' . $_website->getName() . '">';
+                        foreach ($this->getGroupCollection($_website) as $_group) {
+                            $sel = $this->getStoreId() == $_group->getId() ? ' selected' : '';
+                            echo '<option value="' . $_group->getId() . '"' . $sel . '>' . $_group->getName() . '</option>';
+                        }
+                        echo '</optgroup>';
+                    }
+                } elseif ($scope == 'website_id') {
+                    foreach ($_websiteCollection as $_website) {
+                        $sel = $this->getStoreId() == $_website->getId() ? ' selected' : '';
+                        echo '<option value="' . $_website->getId() . '"' . $sel . '>' . $_website->getName() . '</option>';
+                    }
+                } elseif ($scope == 'store_id') {
+                    foreach ($_websiteCollection as $_website) {
+                        $showWebsite = false;
+                        foreach ($this->getGroupCollection($_website) as $_group) {
+                            $showGroup = false;
+                            foreach ($this->getStoreCollection($_group) as $_store) {
+                                if ($showWebsite == false) {
+                                    $showWebsite = true;
+                                    echo '<optgroup label="' . $_website->getName() . '"></optgroup>';
+                                }
+                                if ($showGroup == false) {
+                                    $showGroup = true;
+                                    echo '<optgroup label="&nbsp;&nbsp;&nbsp;' . $_group->getName() . '">';
+                                }
+                                $sel = $this->getStoreId() == $_store->getId() ? ' selected' : '';
+                                echo '<option value="' . $_store->getId() . '"' . $sel . '>&nbsp;&nbsp;&nbsp;&nbsp;' . $_store->getName() . '</option>';
+                            }
+                            if ($showGroup) {
+                                echo '</optgroup>';
+                            }
+                        }
+                    }
+                } ?>
+            </select>
+        </p>
+    </div>
+    <script type="text/javascript">
+        function switchStore(obj){
+            var storeParam = obj.value ? 'store/'+obj.value + '/' : '';
+            if(obj.switchParams){
+                storeParam+= obj.switchParams;
+            }
+            <?php if ($this->getUseConfirm()): ?>
+                if(confirm("<?php echo $this->__('Please confirm site switching. All data that hasn\'t been saved will be lost.') ?>")){
+                    setLocation('<?php echo $this->getSwitchUrl() ?>'+storeParam);
+                    return true;
+                }
+                else {
+                    obj.value = '<?php echo $this->getStoreId() ?>';
+                }
+                return false;
+            <?php else: ?>
+                setLocation('<?php echo $this->getSwitchUrl() ?>'+storeParam);
+            <?php endif; ?>
+        }
+    </script>
+<?php endif; ?>
