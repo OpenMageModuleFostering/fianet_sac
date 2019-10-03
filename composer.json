@@ -1,16 +1,19 @@
 {
-    "name": "OpenMageModuleFostering/Fianet_Sac",
+    "name": "OpenMageModuleFostering\/Fianet_Sac",
     "type": "magento-module",
     "license": "Open-Software-License-(OSL-3.0)",
     "homepage": "",
     "description": "FIA-NET Certissim",
     "authors": [
-    {
-        "name": "FIA-NET",
-        "email": "support-boutique@fia-net.com"
-    }
-],
+        {
+            "name": "FIA-NET",
+            "email": "support-boutique@fia-net.com"
+        }
+    ],
     "suggest": {
-        "magento-hackathon/magento-composer-installer": "*"
-    }
+        "magento-hackathon\/magento-composer-installer": "*"
+    },
+    "keywords": [
+        "openmage-module"
+    ]
 }
